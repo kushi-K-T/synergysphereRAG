@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynergySphere | Isolated AI Service Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="brand">
+                <h2>? SynergySphere</h2>
+                <span class="badge">Isolated Dual-Path</span>
+            </div>
+
+            <div class="section-title">SYSTEM STATUS</div>
+            <div class="status-card" id="status-card">
+                <div class="status-item"><span>Local Ollama:</span> <strong id="st-ollama">...</strong></div>
+                <div class="status-item"><span>Vector Chunks:</span> <strong id="st-chunks">...</strong></div>
+                <div class="status-item"><span>External AI:</span> <strong id="st-ext">...</strong></div>
+                <div class="status-item"><span>MCP Layer:</span> <strong id="st-mcp">...</strong></div>
+            </div>
+
+            <div class="section-title">PRIVATE DOCUMENTS</div>
+            <div class="doc-upload">
+                <input type="file" id="file-input" />
+                <button class="btn btn-secondary" onclick="uploadDocument()">Upload Document</button>
+                <button class="btn btn-secondary" onclick="triggerIngest()">Re-Ingest All</button>
+            </div>
+            <div class="doc-list" id="doc-list"></div>
+        </aside>
+
+        <main class="chat-container">
+            <header class="chat-header">
+                <h3>AI Assistant Workspace</h3>
+                <span id="route-indicator" class="route-tag route-idle">Idle</span>
+            </header>
+
+            <div class="messages" id="messages-container">
+                <div class="message system-msg">
+                    Welcome to SynergySphere. Queries containing internal/sensitive data are handled strictly by your local Ollama instance with ChromaDB. General questions route to the external provider.
+                </div>
+            </div>
+
+            <footer class="chat-input-area">
+                <form id="chat-form" onsubmit="handleSend(event)">
+                    <input type="text" id="query-input" placeholder="Ask a private document question or general knowledge..." autocomplete="off" required />
+                    <button type="submit" class="btn btn-primary" id="send-btn">Send</button>
+                </form>
+            </footer>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

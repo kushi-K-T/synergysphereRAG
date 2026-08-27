@@ -1,0 +1,4 @@
+SynergySphere Deployment Notes:
+- SQLite is used solely for metadata, query audit trails, and execution logging.
+- Hugging Face sentence-transformers/all-MiniLM-L6-v2 runs locally on CPU/GPU to generate 384-dimensional vector embeddings.
+- Vector retrieval operates with a default top_k of 5 chunks.

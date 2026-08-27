@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  synergysphere:
+    build: .
+    container_name: synergysphere_service
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=SynergySphere
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - OLLAMA_MODEL=llama3:8b
+      - CHROMA_PATH=/app/data/chroma
+      - DATABASE_URL=sqlite:////app/data/synergysphere.db
+      - EXTERNAL_AI_ENABLED=false
+    volumes:
+      - ./data:/app/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
